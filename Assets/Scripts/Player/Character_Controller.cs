@@ -6,13 +6,8 @@ using UnityEngine.InputSystem;
 public class Character_Controller : InputController
 {
     CharacterController controller;
-    [SerializeField]PlayerInput input = new PlayerInput();
+    [SerializeField]InputPlayer input = new InputPlayer();
     float speed = 5;
-
-    private void Awake()
-    {
-        //input = new PlayerInput();
-    }
 
     private void Start()
     {
