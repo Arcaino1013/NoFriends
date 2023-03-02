@@ -16,6 +16,7 @@ public class InputPlayer
         //testMap.ad
     }
 
+
     public InputAction Move { get { return move;}   set { move = value;} }
     public InputAction Fire { get { return fire;}   set { fire = value;} }
 

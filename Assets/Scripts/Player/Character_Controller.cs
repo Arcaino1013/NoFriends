@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Character_Controller : InputController
 {
     CharacterController controller;
-    [SerializeField]InputPlayer input = new InputPlayer();
+    Vector2 dir;
     float speed = 5;
 
     private void Start()
@@ -14,21 +14,38 @@ public class Character_Controller : InputController
         controller = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        controller.Move(movementDirection()* speed *Time.deltaTime);
+        
     }
 
-
-    private Vector3 movementDirection()
+    private void Update()
     {
-        float x = 0,y, z = 0;
-        //x = Input.GetAxis("Horizontal");
-        y = 0; //For now we have to simulate gravity
-        //z = Input.GetAxis("Vertical");
+        controller.Move(new Vector3(dir.x,0,dir.y) * speed * Time.deltaTime );
+    }
 
-        Debug.Log("This is the InputVector : X =" + x.ToString() + "; Y =" + y.ToString() + " Z =" + z.ToString());
-        return new Vector3(x,y,z);
+    protected override void OnFire(InputAction.CallbackContext context)
+    {
+        Debug.Log("We fired, the overriten method");
+
+    }
+
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        Debug.Log("We looked, the overriten method");
+    }
+
+    public override void OnMove(InputAction.CallbackContext context)
+    {
+        dir = context.ReadValue<Vector2>();
+        dir = VectorOperations.rawInput(dir);
+        Debug.Log("The movement direction is x " + dir.x + " y " + dir.y);
+    }
+
+    public override void OnMoveCanceled(InputAction.CallbackContext context)
+    {
+        dir = context.ReadValue<Vector2>();
+        dir = VectorOperations.rawInput(dir);
+        Debug.Log("We cancelled the move moved");
     }
 }

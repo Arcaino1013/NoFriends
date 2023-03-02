@@ -4,38 +4,41 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class InputController : MonoBehaviour, InputMap.IPlayerActions
+public class InputController : MonoBehaviour
 {
-    PlayerInput input;
-
+    protected MyInput inputs;
 
 
     protected void Awake()
     {
-        input = GetComponent<PlayerInput>();
-        if(input == null ) { Debug.LogWarning("PlayerInput is empty please fix."); } 
+        inputs = new MyInput();
+        inputs.Player.Enable();
+        inputs.Player.Fire.performed += OnFire;
+        inputs.Player.Look.performed += OnLook;
+        inputs.Player.Move.performed += OnMove;
+        inputs.Player.Move.canceled += OnMoveCanceled;
     }
 
 
 
 
-    public void OnFire(InputAction.CallbackContext context)
+    protected virtual void OnFire(InputAction.CallbackContext context)
     {
         Debug.Log("We fired");
-        
     }
 
-    public void OnLook(InputAction.CallbackContext context)
+    public virtual void OnLook(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("We looked");
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    public virtual void OnMove(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("We moved");
     }
 
-
-
-
+    public virtual void OnMoveCanceled(InputAction.CallbackContext context)
+    {
+        Debug.Log("We cancelled the move moved");
+    }
 }
