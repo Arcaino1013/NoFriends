@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\CollisionTest.cs" />
     <Compile Include="Assets\Scripts\Player\InputController.cs" />
     <Compile Include="Assets\Scripts\Proyectile\ProyectileSO.cs" />
+    <Compile Include="Assets\Scripts\Library\Vector\VectorOperations.cs" />
     <Compile Include="Assets\Scripts\Player\CharacterManager.cs" />
     <Compile Include="Assets\Scripts\Player\Input\InputPlayer.cs" />
     <Compile Include="Assets\Scripts\Player\InputMap.cs" />
@@ -66,7 +67,6 @@
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Proyectile\Proyectile.cs" />
     <Compile Include="Assets\Scripts\Player\Character_Controller.cs" />
-    <Compile Include="Assets\Scripts\Library\Vector\VectorOperations.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
