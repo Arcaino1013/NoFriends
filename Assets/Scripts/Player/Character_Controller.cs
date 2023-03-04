@@ -13,12 +13,6 @@ public class Character_Controller : InputController
     {
         controller = GetComponent<CharacterController>();
     }
-
-    private void OnEnable()
-    {
-        
-    }
-
     private void Update()
     {
         controller.Move(new Vector3(dir.x,0,dir.y) * speed * Time.deltaTime );
@@ -35,14 +29,14 @@ public class Character_Controller : InputController
         Debug.Log("We looked, the overriten method");
     }
 
-    public override void OnMove(InputAction.CallbackContext context)
+    protected override void OnMove(InputAction.CallbackContext context)
     {
         dir = context.ReadValue<Vector2>();
         dir = VectorOperations.rawInput(dir);
         Debug.Log("The movement direction is x " + dir.x + " y " + dir.y);
     }
 
-    public override void OnMoveCanceled(InputAction.CallbackContext context)
+    protected override void OnMoveCanceled(InputAction.CallbackContext context)
     {
         dir = context.ReadValue<Vector2>();
         dir = VectorOperations.rawInput(dir);
