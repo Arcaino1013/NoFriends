@@ -12,6 +12,14 @@ public class VectorOperations
         return vector; 
     }
 
+    public static Vector3 rawInput(Vector3 vector)
+    {
+        vector.x = rawAxis(vector.x);
+        vector.y = rawAxis(vector.y);
+        vector.z = rawAxis(vector.z);
+        return vector;
+    }
+
     private static int rawAxis(float value)
     {
         if (value == 0) return 0;

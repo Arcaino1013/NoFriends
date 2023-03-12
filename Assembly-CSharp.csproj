@@ -59,13 +59,15 @@
     <Compile Include="Assets\Scripts\CollisionTest.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\InputController.cs" />
     <Compile Include="Assets\Scripts\Proyectile\ProyectileSO.cs" />
-    <Compile Include="Assets\Scripts\Lib\Vector\VectorOperations.cs" />
+    <Compile Include="Assets\Scripts\Lib\Math\VectorOperations.cs" />
+    <Compile Include="Assets\Scripts\Lib\Math\Degree.cs" />
     <Compile Include="Assets\Scripts\Player\CharacterManager.cs" />
     <Compile Include="Assets\Scripts\Player\InputMap.cs" />
+    <Compile Include="Assets\Scripts\Lib\Math\Triangle.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraManager.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Proyectile\Proyectile.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\Character_Controller.cs" />
-    <Compile Include="Assets\Scripts\Camera\CameraManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -6,18 +6,13 @@ using UnityEngine.InputSystem.Utilities;
 
 public class InputController : MonoBehaviour
 {
-    protected MyInput inputs;
+    protected MyInput input;
 
 
     protected void Awake()
     {
-        inputs = new MyInput();
-        inputs.Player.Enable();
-        inputs.Player.Fire.performed += OnFire;
-        inputs.Player.Look.performed += OnLook;
-        inputs.Player.Move.performed += OnMove;
-        inputs.Player.Move.canceled += OnMoveCanceled;
-        inputs.Player.Jump.performed += OnJump;
+        if (input == null) { input = new MyInput(); }
+        input.Player.Enable();
     }
 
 

@@ -6,8 +6,19 @@ using UnityEngine.InputSystem;
 public class Character_Controller : InputController
 {
     CharacterController controller;
-    Vector2 dir;
+    Vector3 dir, inputDir;
     float speed = 5;
+    protected new void Awake()
+    {
+        input = transform.parent.GetComponent<CharacterManager>().Input;
+        if (input == null) {Debug.LogWarning("No element of the class MyInput. We are generating out own"); input = new MyInput(); }
+        input.Player.Enable();
+        input.Player.Fire.performed += OnFire;
+        input.Player.Look.performed += OnLook;
+        input.Player.Move.performed += OnMove;
+        input.Player.Move.canceled += OnMoveCanceled;
+        input.Player.Jump.performed += OnJump;
+    }
 
     private void Start()
     {
@@ -15,7 +26,12 @@ public class Character_Controller : InputController
     }
     private void Update()
     {
-        controller.Move(new Vector3(dir.x,0,dir.y) * speed * Time.deltaTime );
+        controller.Move(dir * speed * Time.deltaTime );
+    }
+
+    private void LateUpdate()
+    {
+        UpdateDir();
     }
 
     protected override void OnFire(InputAction.CallbackContext context)
@@ -26,20 +42,28 @@ public class Character_Controller : InputController
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        Debug.Log("We looked, the overriten method");
+        Debug.Log("We looked");
+        Vector2 v = context.ReadValue<Vector2>();
+        controller.transform.Rotate(new Vector2(0,v.x) * 10 * Time.deltaTime);
     }
 
     protected override void OnMove(InputAction.CallbackContext context)
     {
-        dir = context.ReadValue<Vector2>();
-        dir = VectorOperations.rawInput(dir);
-        Debug.Log("The movement direction is x " + dir.x + " y " + dir.y);
+        SetDir(context.ReadValue<Vector2>());
     }
 
     protected override void OnMoveCanceled(InputAction.CallbackContext context)
     {
-        dir = context.ReadValue<Vector2>();
-        dir = VectorOperations.rawInput(dir);
-        Debug.Log("We cancelled the move moved");
+        SetDir(context.ReadValue<Vector2>());
+    }
+
+    private void SetDir(Vector2 input)
+    {
+        inputDir = VectorOperations.rawInput(new Vector3(input.x, 0, input.y));
+    }
+
+    private void UpdateDir()
+    {
+        dir = inputDir.x * controller.transform.right + inputDir.z * controller.transform.forward;
     }
 }

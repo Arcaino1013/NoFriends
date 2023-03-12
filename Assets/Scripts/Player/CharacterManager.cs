@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
+    protected MyInput input;
     Collider collider;
     int health = 100;
+
+    public void Awake()
+    {
+        input = new MyInput();
+    }
+
     void Start()
     {
         collider = gameObject.GetComponent<Collider>();
@@ -20,4 +27,6 @@ public class CharacterManager : MonoBehaviour
     {
         Debug.Log("Collided with a particle");
     }
+
+    public MyInput Input { get { return input; } }
 }
