@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -14,14 +15,20 @@ public class Degree
         {
             case Triangle.Type.Equilateral:
                 return 60;
-            case Triangle.Type.Isosceles: 
-                break;
+            case Triangle.Type.Isosceles:
+                return Mathf.Asin((triangle.Side1.magnitude)/(triangle.Side3.magnitude / 2));
             case Triangle.Type.Scalene:
-                break;
+                return Mathf.Asin((triangle.Side1.magnitude) / (triangle.Side3.magnitude));
             default: break;
         }
 
         return 0;
+    }
+
+    private float scaleneDegree(float oppositeLeg, float hypothenuse)
+    {
+        float sinA = oppositeLeg/(hypothenuse);
+        return Mathf.Asin(sinA);
     }
 
     public static float calculateRadian(Vector2 input) 

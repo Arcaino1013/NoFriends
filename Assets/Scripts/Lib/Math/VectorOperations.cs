@@ -12,6 +12,13 @@ public class VectorOperations
         return vector; 
     }
 
+    public static Vector2 halfVector2(Vector2 vector)
+    {
+        vector.x /= 2;
+        vector.y /= 2;
+        return vector;
+    }
+
     public static Vector3 rawInput(Vector3 vector)
     {
         vector.x = rawAxis(vector.x);

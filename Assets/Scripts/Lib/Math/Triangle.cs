@@ -42,4 +42,8 @@ public class Triangle
 
     public Type TriangleType { get { return type; } }
 
+    public Vector2 Side1 { get { return side1; } }
+    public Vector2 Side2 { get { return side2; } }
+    public Vector2 Side3 { get { return side3; } }
+
 }
