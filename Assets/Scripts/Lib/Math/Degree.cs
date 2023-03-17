@@ -18,7 +18,8 @@ public class Degree
             case Triangle.Type.Isosceles:
                 return Mathf.Asin((triangle.Side1.magnitude)/(triangle.Side3.magnitude / 2));
             case Triangle.Type.Scalene:
-                return Mathf.Asin((triangle.Side1.magnitude) / (triangle.Side3.magnitude));
+                if(triangle.Side1.magnitude >= triangle.Side2.magnitude) return Mathf.Asin((triangle.Side1.magnitude) / (triangle.Side3.magnitude));
+                return Mathf.Asin((triangle.Side2.magnitude) / (triangle.Side3.magnitude));
             default: break;
         }
 
