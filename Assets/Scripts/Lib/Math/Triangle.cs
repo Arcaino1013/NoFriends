@@ -14,21 +14,26 @@ public class Triangle
     public Triangle(Vector2 input)
     {
         side1 = new Vector2(0, 1);
-        side2 = input.normalized;
-        side3 = side2 - side1;
+        side2 = input;
+        side3 = side1 - side2;
+        SetHypothenuse();
+        //Debug.Log("Side1 = " + side1);
+        //Debug.Log("Side2 = " + side2);
+        //Debug.Log("Side3 = " + side3);
     }
 
     public Triangle(Vector2 side1, Vector2 side2)
     {
-        this.side1 = side1.normalized;
-        this.side2 = side2.normalized;
-        side3 = side2 - side1;
+        this.side1 = side1;
+        this.side2 = side2;
+        side3 =side1 - side2;
+        SetHypothenuse();
     }
 
     private void SetHypothenuse()
     {
         //Determines the Type of Triangle we are working with
-        if(side3.magnitude == side2.magnitude && side3.magnitude == side1.magnitude) { type = Type.Equilateral; return; }
+        if(side1.magnitude == side2.magnitude && side3.magnitude == side1.magnitude) { type = Type.Equilateral; return; }
         if(side1.magnitude == side3.magnitude) { type = Type.Isosceles; return; }
         //If you dont enter in both ifs the Triangle is of the Type Scalene an has a Hyposthenuse
         type = Type.Scalene;

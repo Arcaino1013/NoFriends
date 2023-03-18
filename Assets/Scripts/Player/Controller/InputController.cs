@@ -15,8 +15,19 @@ public class InputController : MonoBehaviour
         input.Player.Enable();
     }
 
+    //Library exportation
+    protected virtual Vector2 getNormalizedMousePos()
+    {
+        Vector2 mouseRatio;
+        mouseRatio.x = Mouse.current.position.ReadValue().x / Screen.width;
+        mouseRatio.y = Mouse.current.position.ReadValue().y / Screen.height;
 
+        mouseRatio.x = (mouseRatio.x - 0.5f);
+        mouseRatio.y = (mouseRatio.y - 0.5f);
 
+        Debug.LogWarning("The current mouse position is " + mouseRatio);
+        return mouseRatio;
+    } 
 
     protected virtual void OnFire(InputAction.CallbackContext context) {Debug.Log("We fired");}
     protected virtual void OnLook(InputAction.CallbackContext context) {Debug.Log("We looked");}

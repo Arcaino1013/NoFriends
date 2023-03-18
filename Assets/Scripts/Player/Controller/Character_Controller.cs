@@ -36,16 +36,16 @@ public class Character_Controller : InputController
 
     protected override void OnFire(InputAction.CallbackContext context)
     {
+        //getNormalizedMousePos();
         Debug.Log("The mouse position is " + (Mouse.current.position.ReadValue()));
 
     }
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        Vector2 mouse = Mouse.current.position.ReadValue();
-        Debug.Log("We looked");
-        Vector2 v = context.ReadValue<Vector2>();
-        controller.transform.Rotate(new Vector2(0,v.x) * 10 * Time.deltaTime);
+        Vector2 lookDir = getNormalizedMousePos();
+        Degree.calculateDegree(lookDir);
+        Debug.Log("The angle is : " + Degree.calculateDegree(lookDir));
     }
 
     protected override void OnMove(InputAction.CallbackContext context)
