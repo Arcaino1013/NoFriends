@@ -43,9 +43,8 @@ public class Character_Controller : InputController
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        Vector2 lookDir = getNormalizedMousePos();
-        Degree.calculateDegree(lookDir);
-        Debug.Log("The angle is : " + Degree.calculateDegree(lookDir));
+        Vector2 dir = getNormalizedMousePos();
+        controller.transform.forward = new Vector3(dir.x,controller.transform.forward.y,dir.y);
     }
 
     protected override void OnMove(InputAction.CallbackContext context)
