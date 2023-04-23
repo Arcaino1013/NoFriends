@@ -25,7 +25,6 @@ public class InputController : MonoBehaviour
         mouseRatio.x = (mouseRatio.x - 0.5f);
         mouseRatio.y = (mouseRatio.y - 0.5f);
 
-        Debug.LogWarning("The current mouse position is " + mouseRatio);
         return mouseRatio;
     } 
 

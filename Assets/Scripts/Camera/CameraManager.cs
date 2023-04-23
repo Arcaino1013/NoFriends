@@ -12,11 +12,14 @@ public class CameraManager : MonoBehaviour
     MyInput input;
 
     Vector2 toLook = Vector2.zero;
+    Transform toFollow;
 
 
     public void Awake()
     {
         input = transform.parent.GetComponent<CharacterManager>().Input;
+        toFollow = transform.parent.Find("Sphere").gameObject.transform;
+        if(toFollow == null) { Debug.LogWarning("toFollow is empty"); }
         if (input == null) { Debug.LogWarning("No element of the class MyInput. We are generating out own"); input = new MyInput(); }
     }
 
@@ -29,6 +32,7 @@ public class CameraManager : MonoBehaviour
 
     public void Update()
     {
-        myCam.transform.LookAt(toLook);   
+        myCam.transform.LookAt(toLook);
+        myCam.transform.position = new Vector3(toFollow.position.x, myCam.transform.position.y, toFollow.transform.position.z);
     }
 }
