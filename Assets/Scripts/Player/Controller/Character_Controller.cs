@@ -44,7 +44,11 @@ public class Character_Controller : InputController
     public void OnLook(InputAction.CallbackContext context)
     {
         Vector2 dir = getNormalizedMousePos();
-        controller.transform.forward = new Vector3(dir.x,controller.transform.forward.y,dir.y);
+        controller.transform.forward = new Vector3(dir.x, controller.transform.forward.y, dir.y);
+
+        //Vector2 dir = context.ReadValue<Vector2>() * 0.5f;
+        //controller.transform.Rotate(0, dir.x, 0);
+        
     }
 
     protected override void OnMove(InputAction.CallbackContext context)
