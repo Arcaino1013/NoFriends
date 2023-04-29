@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Character_Controller : InputController
 {
+    ParticleSystem gun;
     CharacterController controller;
     Vector3 dir, inputDir;
     float speed = 5;
@@ -14,6 +15,7 @@ public class Character_Controller : InputController
         if (input == null) {Debug.LogWarning("No element of the class MyInput. We are generating out own"); input = new MyInput(); }
         input.Player.Enable();
         input.Player.Fire.performed += OnFire;
+        input.Player.Fire.canceled += OnFireCanceled;
         input.Player.Look.performed += OnLook;
         input.Player.Move.performed += OnMove;
         input.Player.Move.canceled += OnMoveCanceled;
@@ -23,6 +25,9 @@ public class Character_Controller : InputController
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        gameObject.transform.SetAsFirstSibling();
+        gun = this.transform.GetComponentInChildren<ParticleSystem>();
+        gun.Stop();
     }
     private void Update()
     {
@@ -36,19 +41,19 @@ public class Character_Controller : InputController
 
     protected override void OnFire(InputAction.CallbackContext context)
     {
-        //getNormalizedMousePos();
         Debug.Log("The mouse position is " + (Mouse.current.position.ReadValue()));
+        gun.Play();
+    }
 
+    protected override void OnFireCanceled(InputAction.CallbackContext context)
+    {
+        gun.Stop();
     }
 
     public void OnLook(InputAction.CallbackContext context)
     {
         Vector2 dir = getNormalizedMousePos();
         controller.transform.forward = new Vector3(dir.x, controller.transform.forward.y, dir.y);
-
-        //Vector2 dir = context.ReadValue<Vector2>() * 0.5f;
-        //controller.transform.Rotate(0, dir.x, 0);
-        
     }
 
     protected override void OnMove(InputAction.CallbackContext context)

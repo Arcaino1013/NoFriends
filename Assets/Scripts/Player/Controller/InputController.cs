@@ -29,6 +29,7 @@ public class InputController : MonoBehaviour
     } 
 
     protected virtual void OnFire(InputAction.CallbackContext context) {Debug.Log("We fired");}
+    protected virtual void OnFireCanceled(InputAction.CallbackContext context) { Debug.Log("We stopped firing"); }
     protected virtual void OnLook(InputAction.CallbackContext context) {Debug.Log("We looked");}
     protected virtual void OnMove(InputAction.CallbackContext context) {Debug.Log("We moved");}
     protected virtual void OnMoveCanceled(InputAction.CallbackContext context) {Debug.Log("We cancelled the move moved");}
