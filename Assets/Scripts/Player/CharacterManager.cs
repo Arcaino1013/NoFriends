@@ -25,7 +25,7 @@ public class CharacterManager : MonoBehaviour
     //Damage Detectiont has to be worked on
     public void OnParticleCollision(GameObject other)
     {
-        Debug.Log("Collided with a particle");
+        Debug.Log("Got shot");
     }
 
     public MyInput Input { get { return input; } }
