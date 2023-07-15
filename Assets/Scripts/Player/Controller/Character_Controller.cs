@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,6 +54,7 @@ public class Character_Controller : InputController
     public void OnLook(InputAction.CallbackContext context)
     {
         Vector2 dir = getNormalizedMousePos();
+        Debug.Log(controller.transform.forward);
         controller.transform.forward = new Vector3(dir.x, controller.transform.forward.y, dir.y);
     }
 

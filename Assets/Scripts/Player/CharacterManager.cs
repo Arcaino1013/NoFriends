@@ -25,7 +25,9 @@ public class CharacterManager : MonoBehaviour
     //Damage Detectiont has to be worked on
     public void OnParticleCollision(GameObject other)
     {
-        Debug.Log("Got shot");
+        Debug.Log("Got shot by " + other.name);
+        if(other.layer == 3) { health -= 50; }
+        if(health <= 0) { this.gameObject.SetActive(false); }
     }
 
     public MyInput Input { get { return input; } }
