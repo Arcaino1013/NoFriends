@@ -17,17 +17,9 @@ public class CameraManager : MonoBehaviour
 
     public void Awake()
     {
+        myCam = GetComponent<Camera>();
         input = transform.parent.GetComponent<CharacterManager>().Input;
-        //toFollow = transform.parent.Find(").gameObject.transform;
-        switch (transform.parent.name) 
-        {
-            case "Sphere":
-                toFollow = transform.parent.Find("Sphere").gameObject.transform;
-                break;
-            case "Ball":
-                toFollow = transform.parent.Find("Ball").gameObject.transform;
-                break;
-        }
+        toFollow = transform.parent.Find("Controller").gameObject.transform;
         if(toFollow == null) { Debug.LogWarning("toFollow is empty"); }
         if (input == null) { Debug.LogWarning("No element of the class MyInput. We are generating out own"); input = new MyInput(); }
         if(myCam == null) { Debug.LogWarning("Mycam is empty"); }
@@ -42,9 +34,7 @@ public class CameraManager : MonoBehaviour
 
     public void Update()
     {
-        //myCam.transform.LookAt(toFollow.transform.position);
-        //Debug.Log(myCam.transform.position + " " + toFollow.position);
-
-        //myCam.transform.position = new Vector3(toFollow.position.x, myCam.transform.position.y, toFollow.transform.position.z);
+        myCam.transform.LookAt(toFollow.transform.position);
+        myCam.transform.position = new Vector3(toFollow.position.x, myCam.transform.position.y, toFollow.transform.position.z);
     }
 }

@@ -13,7 +13,8 @@ public class Character_Controller : InputController
     protected new void Awake()
     {
         input = transform.parent.GetComponent<CharacterManager>().Input;
-        if (input == null) {Debug.LogWarning("No element of the class MyInput. We are generating out own"); input = new MyInput(); }
+        //Duno if there is a reason to try to find this doesnt seem like we defined it
+        if (input == null) {Debug.LogWarning("No element of the class MyInput. We are generating out own");Debug.LogWarning("Myinput container is " + transform.parent.name); input = new MyInput(); }
         input.Player.Enable();
         input.Player.Fire.performed += OnFire;
         input.Player.Fire.canceled += OnFireCanceled;
