@@ -34,7 +34,7 @@ public class CameraManager : MonoBehaviour
 
     public void Update()
     {
-        myCam.transform.LookAt(toFollow.transform.position);
-        myCam.transform.position = new Vector3(toFollow.position.x, myCam.transform.position.y, toFollow.transform.position.z);
+        //myCam.transform.LookAt(toFollow.transform.position);
+        //myCam.transform.position = new Vector3(toFollow.position.x, myCam.transform.position.y, toFollow.transform.position.z);
     }
 }

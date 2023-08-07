@@ -6,22 +6,28 @@ using UnityEngine.InputSystem;
 
 public class Character_Controller : InputController
 {
+    InputActionMap player;
     ParticleSystem gun;
     CharacterController controller;
     Vector3 dir, inputDir;
     float speed = 5;
+    bool isGrounded = false;
+
     protected new void Awake()
     {
         input = transform.parent.GetComponent<CharacterManager>().Input;
         //Duno if there is a reason to try to find this doesnt seem like we defined it
         if (input == null) {Debug.LogWarning("No element of the class MyInput. We are generating out own");Debug.LogWarning("Myinput container is " + transform.parent.name); input = new MyInput(); }
+
         input.Player.Enable();
+
         input.Player.Fire.performed += OnFire;
         input.Player.Fire.canceled += OnFireCanceled;
         input.Player.Look.performed += OnLook;
         input.Player.Move.performed += OnMove;
         input.Player.Move.canceled += OnMoveCanceled;
         input.Player.Jump.performed += OnJump;
+
     }
 
     private void Start()
@@ -76,6 +82,6 @@ public class Character_Controller : InputController
 
     private void UpdateDir()
     {
-        dir = inputDir.x * controller.transform.right + inputDir.z * controller.transform.forward;
+        dir = inputDir.x * controller.transform.right + inputDir.z * controller.transform.forward + controller.transform.up * -1;
     }
 }
